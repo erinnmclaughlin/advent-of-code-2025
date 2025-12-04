@@ -1,8 +1,8 @@
 using System.Text;
 
-namespace AdventOfCode2025.CSharp.Day04;
+namespace AdventOfCode2025.CSharp;
 
-public sealed class Solver: ISolver<Solver>
+public sealed class Day04: ISolver<Day04>
 {
     public static int DayNumber => 4;
 

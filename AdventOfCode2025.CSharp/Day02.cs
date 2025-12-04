@@ -1,6 +1,6 @@
-namespace AdventOfCode2025.CSharp.Day02;
+namespace AdventOfCode2025.CSharp;
 
-public sealed class Solver : ISolver<Solver>
+public sealed class Day02 : ICSharpSolver<Day02>
 {
     public static int DayNumber => 2;
 
