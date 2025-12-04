@@ -1,6 +1,6 @@
-namespace AdventOfCode2025.Day01;
+namespace AdventOfCode2025.CSharp;
 
-public sealed class Solver : ISolver<Solver>
+public sealed class Day01 : ISolver<Day01>
 {
     public static int DayNumber => 1;
     
@@ -17,9 +17,7 @@ public sealed class Solver : ISolver<Solver>
 
             for (var i = 0; i < number; i++)
             {
-                current += increment;
-                if (current == 100) current = 0;
-                if (current == -1) current = 99;
+                current = (current + increment + 100) % 100;
                 if (current == 0) passThroughZeroCount++;
             }
 

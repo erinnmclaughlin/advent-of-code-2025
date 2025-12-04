@@ -1,4 +1,4 @@
-namespace AdventOfCode2025;
+﻿namespace AdventOfCode2025;
 
 public interface ISolver<TSelf> : ISolver where TSelf : ISolver<TSelf>, new()
 {

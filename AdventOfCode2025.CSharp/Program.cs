@@ -1,5 +1,6 @@
 ﻿using System.Reflection;
 using AdventOfCode2025;
+using AdventOfCode2025.CSharp;
 
 var dayNumber = GetDayNumber(args) ?? DateTime.Today.Day;
 

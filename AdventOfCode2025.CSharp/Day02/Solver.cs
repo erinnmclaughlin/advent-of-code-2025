@@ -1,4 +1,4 @@
-namespace AdventOfCode2025.Day02;
+namespace AdventOfCode2025.CSharp.Day02;
 
 public sealed class Solver : ISolver<Solver>
 {

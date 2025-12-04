@@ -1,6 +1,6 @@
 using System.Text;
 
-namespace AdventOfCode2025.Day04;
+namespace AdventOfCode2025.CSharp.Day04;
 
 public sealed class Solver: ISolver<Solver>
 {
