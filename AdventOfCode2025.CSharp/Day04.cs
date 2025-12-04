@@ -6,7 +6,7 @@ public sealed class Day04: ISolver<Day04>
 {
     public static int DayNumber => 4;
 
-    public (string? PartOne, string? PartTwo) Solve(FileInfo inputFile)
+    public (object? PartOne, object? PartTwo) Solve(FileInfo inputFile)
     {
         var lines = File.ReadAllLines(inputFile.FullName);
         
@@ -19,10 +19,10 @@ public sealed class Day04: ISolver<Day04>
             totalRemovedCount += removedCount;
         }
         
-        return (initialRemovedCount.ToString(), totalRemovedCount.ToString());
+        return (initialRemovedCount, totalRemovedCount);
     }
 
-    private (int RemovedCount, string[] NewMap) RemoveRolls(string[] lines)
+    private static (int RemovedCount, string[] NewMap) RemoveRolls(string[] lines)
     {
         var total = 0;
 

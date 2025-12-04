@@ -1,29 +1,37 @@
 namespace AdventOfCode2025.CSharp;
 
-public sealed class Day01 : ICSharpSolver<Day01>
+public sealed class Day01 : ISolver<Day01>
 {
     public static int DayNumber => 1;
     
-    public (string? PartOne, string? PartTwo) Solve(FileInfo inputFile)
+    public (object? PartOne, object? PartTwo) Solve(FileInfo inputFile)
     {
-        var current = 50;
+        var dial = new Dial();
         var exactlyZeroCount = 0;
         var passThroughZeroCount = 0;
         
         foreach (var line in File.ReadLines(inputFile.FullName))
         {
-            var number = int.Parse(line[1..]);
-            var increment = line.StartsWith('L') ? -1 : 1;
+            Action turnDial = line[0] is 'L' ? dial.TurnLeft : dial.TurnRight;
+            var ticks = int.Parse(line[1..]);
 
-            for (var i = 0; i < number; i++)
+            for (var i = 0; i < ticks; i++)
             {
-                current = (current + increment + 100) % 100;
-                if (current == 0) passThroughZeroCount++;
+                turnDial();
+                if (dial.CurrentValue == 0) passThroughZeroCount++;
             }
 
-            if (current == 0) exactlyZeroCount++;
+            if (dial.CurrentValue == 0) exactlyZeroCount++;
         }
         
-        return (exactlyZeroCount.ToString(), passThroughZeroCount.ToString());
+        return (exactlyZeroCount, passThroughZeroCount);
+    }
+
+    public sealed class Dial
+    {
+        public int CurrentValue { get; private set; } = 50;
+
+        public void TurnLeft() => CurrentValue = (CurrentValue + 99) % 100;
+        public void TurnRight() => CurrentValue = (CurrentValue + 101) % 100;
     }
 }

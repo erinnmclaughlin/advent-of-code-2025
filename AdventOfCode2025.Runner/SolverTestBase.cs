@@ -3,7 +3,10 @@ using AdventOfCode2025.CSharp;
 namespace AdventOfCode2025.Runner;
 
 [Trait("Category", "CSharp")]
-public abstract class CSharpSolverTestBase<T> : SolverTestBase<T> where T : ICSharpSolver, ISolver<T>, new();
+public abstract class CSharpSolverTestBase<T> : SolverTestBase<T> where T : ISolver<T>, new();
+
+[Trait("Category", "FSharp")]
+public abstract class FSharpSolverTestBase<T> : SolverTestBase<T> where T : ISolver<T>, new();
 
 public abstract class SolverTestBase<T> where T : ISolver<T>, new()
 {
@@ -31,7 +34,7 @@ public abstract class SolverTestBase<T> where T : ISolver<T>, new()
         return File.ReadAllText(filePath);
     }
 
-    private FileInfo GetInputFile(string directory)
+    private static FileInfo GetInputFile(string directory)
     {
         var filePath = Path.Combine(BaseDirectory.FullName, directory, "input.txt");
         

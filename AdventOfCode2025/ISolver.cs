@@ -7,5 +7,5 @@ public interface ISolver<TSelf> : ISolver where TSelf : ISolver<TSelf>, new()
 
 public interface ISolver
 {
-    public (string? PartOne, string? PartTwo) Solve(FileInfo inputFile);
+    public (object? PartOne, object? PartTwo) Solve(FileInfo inputFile);
 }

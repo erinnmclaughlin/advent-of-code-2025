@@ -4,4 +4,7 @@ obj/
 riderModule.iml
 /_ReSharper.Caches/
 
+.vs/
+.vscode/
 **/inputs/**/input.txt
+.fake

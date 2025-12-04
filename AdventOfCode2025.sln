@@ -1,5 +1,8 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 18
+VisualStudioVersion = 18.3.11222.16 d18.3
+MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AdventOfCode2025.CSharp", "AdventOfCode2025.CSharp\AdventOfCode2025.CSharp.csproj", "{31893602-F082-4162-A3BE-9011389DC2E9}"
 EndProject
 Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "AdventOfCode2025.FSharp", "AdventOfCode2025.FSharp\AdventOfCode2025.FSharp.fsproj", "{AC4D481A-2769-4340-B4AB-14AA489AA763}"
@@ -7,6 +10,11 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AdventOfCode2025.Runner", "AdventOfCode2025.Runner\AdventOfCode2025.Runner.csproj", "{67E84B93-056E-48B9-BE5A-7F8F19E5D4C9}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AdventOfCode2025", "AdventOfCode2025\AdventOfCode2025.csproj", "{0C2473BE-C4EF-4B73-84C3-0BD2C491170E}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "csharp", "csharp", "{11242EB8-E9AA-475E-9492-1223E9802BC1}"
+	ProjectSection(SolutionItems) = preProject
+		csharp\day01.cs = csharp\day01.cs
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -30,5 +38,8 @@ Global
 		{0C2473BE-C4EF-4B73-84C3-0BD2C491170E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0C2473BE-C4EF-4B73-84C3-0BD2C491170E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0C2473BE-C4EF-4B73-84C3-0BD2C491170E}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
 	EndGlobalSection
 EndGlobal

@@ -4,7 +4,7 @@ public sealed class Day03 : ISolver<Day03>
 {
     public static int DayNumber => 3;
     
-    public (string? PartOne, string? PartTwo) Solve(FileInfo inputFile)
+    public (object? PartOne, object? PartTwo) Solve(FileInfo inputFile)
     {
         long partOne = 0; 
         long partTwo = 0;
@@ -16,7 +16,7 @@ public sealed class Day03 : ISolver<Day03>
             partTwo += Solve(digits, 12);
         }
 
-        return (partOne.ToString(), partTwo.ToString());
+        return (partOne, partTwo);
     }
 
     private static long Solve(List<Digit> digits, int targetDigitCount)

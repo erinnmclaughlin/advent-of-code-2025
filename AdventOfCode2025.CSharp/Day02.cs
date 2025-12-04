@@ -1,10 +1,10 @@
 namespace AdventOfCode2025.CSharp;
 
-public sealed class Day02 : ICSharpSolver<Day02>
+public sealed class Day02 : ISolver<Day02>
 {
     public static int DayNumber => 2;
 
-    public (string? PartOne, string? PartTwo) Solve(FileInfo inputFile)
+    public (object? PartOne, object? PartTwo) Solve(FileInfo inputFile)
     {
         long partOneSum = 0;
         long partTwoSum = 0;
@@ -19,7 +19,7 @@ public sealed class Day02 : ICSharpSolver<Day02>
             }
         }
         
-        return (partOneSum.ToString(), partTwoSum.ToString());
+        return (partOneSum, partTwoSum);
     }
     
     private static bool IsValid(string idString, int maxMod)
