@@ -10,23 +10,23 @@
 <div class="page">
 
     <div class="dial-container">
-        <div class="dial">
 
-            <span class="current-step">
-                @CurrentStep
-            </span>
+        <div>
+            <div>Land On Zero Count: @(IsRunning ? EndOnZeroCount.ToString() : "--")</div>
+            <div>Total Zero Count: @(IsRunning ? PassThroughZeroCount.ToString() : "--")</div>
+        </div>
+
+        <div class="dial">
+            
+            <span class="current-step">@CurrentStep</span>
 
             @for (var i = 0; i < 100; i += 5)
             {
                 var (x, y) = GetPosition(i);
-
-                <span class="dial-number"
-                      style="left:@($"{x}%"); top:@($"{y}%")">
-                    @i
-                </span>
+                <span class="dial-number" style="@($"left: {x}%; top: {y}%;")">@i</span>
             }
 
-            <span class="dial-number" style="color: white; background-color: @(CurrentDialNumber == 0 ? "limegreen" : "red"); left:@($"{CurrentX}%"); top:@($"{CurrentY}%")">
+            <span class="dial-number current @(CurrentDialNumber == 0 ? "zero" : "")" style="@($"left: {CurrentX}%; top: {CurrentY}%;")">
                 @CurrentDialNumber
             </span>
         </div>
@@ -42,4 +42,3 @@
     </div>
 
 </div>
-

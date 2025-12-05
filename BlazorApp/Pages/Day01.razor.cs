@@ -23,6 +23,9 @@ public partial class Day01
     public double CurrentY { get; set; }
     public string CurrentStep { get; set; } = "";
 
+    public int PassThroughZeroCount = 0;
+    public int EndOnZeroCount = 0;
+
 
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
@@ -60,8 +63,9 @@ public partial class Day01
                 if (CurrentDialNumber == 0)
                 {
                     AudioFile = "sfx/ui-soundpack/Retro9.wav";
+                    PassThroughZeroCount++;
                     StateHasChanged();
-                    await Task.Delay(100);
+                    await Task.Delay(150);
                 }
                 else
                 {
@@ -73,6 +77,8 @@ public partial class Day01
             if (CurrentDialNumber == 0)
             {
                 AudioFile = "sfx/ui-soundpack/Retro10.wav";
+                EndOnZeroCount++;
+                PassThroughZeroCount++;
             }
 
             StateHasChanged();
@@ -89,6 +95,8 @@ public partial class Day01
         CurrentDialNumber = 50;
         (CurrentX, CurrentY) = GetPosition(CurrentDialNumber);
         CurrentStep = string.Empty;
+        PassThroughZeroCount = 0;
+        EndOnZeroCount = 0;
         IsRunning = false;
     }
 
