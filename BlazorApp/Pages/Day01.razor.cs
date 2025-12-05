@@ -15,40 +15,81 @@ public partial class Day01
         L82
         """;
 
+    private bool IsRunning { get; set; }
+
+    public string AudioFile { get; set; } = "";
     public int CurrentDialNumber { get; set; } = 50;
     public double CurrentX { get; set; }
     public double CurrentY { get; set; }
     public string CurrentStep { get; set; } = "";
 
+
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
         if (firstRender)
         {
-            _ = ProcessInput();
+            Reset();
+            StateHasChanged();
         }
     }
 
     public async Task ProcessInput()
     {
+        IsRunning = true;
+
         foreach (var line in Input.Split('\n').Select(l => l.Trim()))
         {
+            if (!IsRunning) return;
+
             CurrentStep = line;
             var increment = line[0] is 'L' ? -1 : 1;
             var ticks = int.Parse(line[1..]);
 
             for (var i = 0; i < ticks; i++)
             {
+                if (!IsRunning) return;
+
+                AudioFile = string.IsNullOrEmpty(AudioFile) ? "sfx/ui-soundpack/Abstract1.wav" : "";
                 CurrentDialNumber = (CurrentDialNumber + increment + 100) % 100;
                 (CurrentX, CurrentY) = GetPosition(CurrentDialNumber);
                 StateHasChanged();
-                await Task.Delay(50);
-                //if (current == 0) passThroughZeroCount++;
+
+                if (i == ticks - 1)
+                    break;
+
+                if (CurrentDialNumber == 0)
+                {
+                    AudioFile = "sfx/ui-soundpack/Retro9.wav";
+                    StateHasChanged();
+                    await Task.Delay(100);
+                }
+                else
+                {
+                    StateHasChanged();
+                    await Task.Delay(50);
+                }
             }
 
-            await Task.Delay(500);
+            if (CurrentDialNumber == 0)
+            {
+                AudioFile = "sfx/ui-soundpack/Retro10.wav";
+            }
 
-            //if (current == 0) exactlyZeroCount++;
+            StateHasChanged();
+            await Task.Delay(1000);
+
+            AudioFile = "";
+
         }
+    }
+
+    private void Reset()
+    {
+        AudioFile = string.Empty;
+        CurrentDialNumber = 50;
+        (CurrentX, CurrentY) = GetPosition(CurrentDialNumber);
+        CurrentStep = string.Empty;
+        IsRunning = false;
     }
 
     private static (double X, double Y) GetPosition(int dialNumber)

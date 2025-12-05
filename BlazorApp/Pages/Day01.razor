@@ -2,27 +2,43 @@
 
 <PageTitle>Day 1: Secret Entrance</PageTitle>
 
+@if (!string.IsNullOrEmpty(AudioFile))
+{
+    <audio autoplay src="@AudioFile"></audio>
+}
+
 <div class="page">
 
-    <div class="dial">
+    <div class="dial-container">
+        <div class="dial">
 
-        <span class="current-step">
-            @CurrentStep
-        </span>
-
-        @for (var i = 0; i < 100; i += 5)
-        {
-            var (x, y) = GetPosition(i);
-
-            <span class="dial-number"
-                  style="left:@($"{x}%"); top:@($"{y}%")">
-                @i
+            <span class="current-step">
+                @CurrentStep
             </span>
-        }
 
-        <span class="dial-number" style="color: white; background-color: @(CurrentDialNumber == 0 ? "limegreen" : "red"); left:@($"{CurrentX}%"); top:@($"{CurrentY}%")">
-            @CurrentDialNumber
-        </span>
+            @for (var i = 0; i < 100; i += 5)
+            {
+                var (x, y) = GetPosition(i);
+
+                <span class="dial-number"
+                      style="left:@($"{x}%"); top:@($"{y}%")">
+                    @i
+                </span>
+            }
+
+            <span class="dial-number" style="color: white; background-color: @(CurrentDialNumber == 0 ? "limegreen" : "red"); left:@($"{CurrentX}%"); top:@($"{CurrentY}%")">
+                @CurrentDialNumber
+            </span>
+        </div>
+
+        @if (!IsRunning)
+        {
+            <button type="button" @onclick="ProcessInput">Start</button>
+        }
+        else
+        {
+            <button type="button" @onclick="Reset">Reset</button>
+        }
     </div>
 
 </div>

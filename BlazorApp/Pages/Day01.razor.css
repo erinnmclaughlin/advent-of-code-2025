@@ -10,13 +10,23 @@
     flex-direction: column;
 }
 
+.dial-container {
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.dial-container button {
+    padding-block: 0.5rem;
+}
+
 .dial {
     width: var(--size);
     height: var(--size);
     position: relative;
     border-radius: 50%;
     border: 1px solid black;
-    margin: auto;
     display: flex;
 }
 
