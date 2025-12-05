@@ -1,3 +1,22 @@
 ﻿@inherits LayoutComponentBase
 
-@Body
+<div class="main-layout">
+    <div class="sidebar">
+        <div class="sidebar-header">
+            <h1>🎄 Advent of Code 2025</h1>
+        </div>
+        <nav class="sidebar-nav">
+            <NavLink href="/" Match="NavLinkMatch.All" class="nav-link">
+                <span class="nav-icon">🏠</span>
+                <span>Home</span>
+            </NavLink>
+            <NavLink href="/day01" class="nav-link">
+                <span class="nav-icon">🔢</span>
+                <span>Day 1: Secret Entrance</span>
+            </NavLink>
+        </nav>
+    </div>
+    <div class="content">
+        @Body
+    </div>
+</div>

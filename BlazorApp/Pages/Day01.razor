@@ -8,12 +8,18 @@
 }
 
 <div class="page">
+    <h1>Day 1: Secret Entrance</h1>
 
     <div class="dial-container">
-
-        <div>
-            <div>Land On Zero Count: @(IsRunning ? EndOnZeroCount.ToString() : "--")</div>
-            <div>Total Zero Count: @(IsRunning ? PassThroughZeroCount.ToString() : "--")</div>
+        <div class="stats-container">
+            <div class="stat-card">
+                <div class="stat-label">Land On Zero Count</div>
+                <div class="stat-value">@(IsRunning ? EndOnZeroCount.ToString() : "--")</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-label">Total Zero Count</div>
+                <div class="stat-value">@(IsRunning ? PassThroughZeroCount.ToString() : "--")</div>
+            </div>
         </div>
 
         <div class="dial">
