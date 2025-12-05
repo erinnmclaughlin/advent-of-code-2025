@@ -20,51 +20,40 @@ var (partOneSum, partTwoSum) = File
         seed: (PartOne: 0L, PartTwo: 0L),
         func: (current, id) =>
         {
-            // any single digit number will always be valid
-            if (id < 10) 
-                return current;
-
             var idString = id.ToString();
 
             // if the id is invalid for part one it'll also be invalid for part two, so return now
-            if (!IsValid(idString, maxMod: 2))
+            if (!IsValid(idString, 2))
                 return (current.PartOne + id, current.PartTwo + id);
 
-            // set minMod = 3 because we've already checked mod = 2
-            return (current.PartOne, current.PartTwo + (IsValid(idString, minMod: 3) ? 0 : id));
+            var mod = 3; // start at 3 because we already checked 2
+
+            while (mod <= idString.Length)
+            {
+                if (!IsValid(idString, mod))
+                {
+                    return (current.PartOne, current.PartTwo + id);
+                }
+
+                mod++;
+            }
+
+            return current;
         }
     );
 
 Console.WriteLine($"Part one: {partOneSum}");
 Console.WriteLine($"Part two: {partTwoSum}");
 
-static bool IsValid(string idString, int minMod = 2, int? maxMod = null)
+
+static bool IsValid(string idString, int numParts)
 {
-    maxMod ??= idString.Length;
-    var length = idString.Length;
+    if (idString.Length == 0 || idString.Length % numParts != 0)
+        return true;
 
-    if (length == 1) return true;
+    var size = idString.Length / numParts;
+    var part = idString[..size];
+    var invalid = string.Join("", Enumerable.Repeat(part, numParts));
 
-    var mod = minMod;
-
-    while (mod <= maxMod.Value)
-    {
-        if (length % mod != 0)
-        {
-            mod++;
-            continue;
-        }
-
-        var partLength = length / mod;
-        var part = idString[..partLength];
-
-        if (idString == string.Join("", Enumerable.Repeat(part, mod)))
-        {
-            return false;
-        }
-                
-        mod++;
-    }
-
-    return true;
+    return !idString.Equals(invalid);
 }
