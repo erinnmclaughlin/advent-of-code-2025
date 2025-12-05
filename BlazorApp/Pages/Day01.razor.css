@@ -1,5 +1,5 @@
 ﻿.page {
-    --size: min(60vmin, 400px);
+    --size: min(80vmin, 400px);
     --radius: calc(var(--size) * 0.45);
     --center: calc(var(--size) / 2);
     --label-size: calc(var(--size) * 0.08);
