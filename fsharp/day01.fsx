@@ -33,9 +33,7 @@ let filePath =
     | [| fp |] -> fp
     | _ -> Path.Combine("inputs", "day01.txt")
 
-let fileLines = File.ReadLines filePath
-
-fileLines
+File.ReadLines filePath
     |> Seq.fold solve (50, 0, 0)
     |> fun (_, partOne, partTwo) ->
         printfn "part one: %i\npart two: %i" partOne partTwo
