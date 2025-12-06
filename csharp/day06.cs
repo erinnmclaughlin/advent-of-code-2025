@@ -37,13 +37,14 @@ long SolvePartOne()
 long SolvePartTwo()
 {
     var sum = 0L;
-    var operatorIndex = operators.Length - 1;
-    long? currentValue = null;
+    var stack = new Stack<char>(operators);
+    
+    long? columnResult = null;
+    var op = stack.Pop();
 
     for (var i = lines[0].Length - 1; i >= 0; i--)
     {
         var sb = new System.Text.StringBuilder();
-        var op = operators[operatorIndex];
 
         foreach (var line in lines[..^1])
         {
@@ -55,36 +56,23 @@ long SolvePartTwo()
 
         if (sb.Length == 0)
         {
-            sum += currentValue ?? 0L;
-            currentValue = null;
-            operatorIndex--;
+            sum += columnResult ?? 0L;
+            columnResult = null;
+            op = stack.Pop();
         }
         else
         {
             var parsedNumber = long.Parse(sb.ToString());
-            currentValue = DoOperation(currentValue, parsedNumber, op);
-            
-            if (i == 0)
-            {
-                sum += currentValue ?? 0L;
-            }
+            columnResult = DoOperation(columnResult, parsedNumber, op);
         }
     }
 
-    return sum;
+    return sum + columnResult ?? 0L;;
 }
 
-static long DoOperation(long? num1, long num2, char op)
+static long DoOperation(long? num1, long num2, char op) => num1 is null ? num2 : op switch
 {
-    if (num1 is null)
-    {
-        return num2;
-    }
-    
-    return op switch
-    {
-        '+' => num1.Value + num2,
-        '*' => num1.Value * num2,
-        _ => throw new NotSupportedException()
-    };
-}
+    '+' => num1.Value + num2,
+    '*' => num1.Value * num2,
+    _ => throw new NotSupportedException()
+};
